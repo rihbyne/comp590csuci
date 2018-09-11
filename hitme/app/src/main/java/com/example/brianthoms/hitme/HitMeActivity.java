@@ -49,6 +49,9 @@ public class HitMeActivity extends AppCompatActivity {
                 {
                     bruiseLevelText="And now my arm is red.";
                 }
+                else {
+                    bruiseLevelText = "looks like health starting to decline";
+                }
                 Toast.makeText(HitMeActivity.this, R.string.ouch,
                         Toast.LENGTH_SHORT).show();
                 ouchMessage=getResources().getString(R.string.ouch) + "\nI've been hit " +
@@ -62,31 +65,32 @@ public class HitMeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(HitMeActivity.this, R.string.sorry, Toast.LENGTH_SHORT).show();
-
                 hitCounter--;
+                int toastMsg = R.string.sorry;
 
-                if (hitCounter < 0) {
+                if (hitCounter < 1) {
                     hitCounter = 0;
-                    bruiseLevelText="You are fit now.";
+                    bruiseLevelText="You are healthy.";
+                    toastMsg = R.string.dogde;
                 }
                 else if (hitCounter > 30) {
-                    bruiseLevelText="And now my arm is about to fall off";
+                    bruiseLevelText="my arm is about to fall off";
                 }
                 else if (hitCounter > 20 & hitCounter < 30) {
-                    bruiseLevelText="my arm is blue.";
+                    bruiseLevelText="arm is still blue.";
                 }
                 else if(hitCounter > 10 & hitCounter < 20)
                 {
-                    bruiseLevelText="my arm is red.";
+                    bruiseLevelText="arm is still red.";
                 }
                 else if(hitCounter > 0 && hitCounter < 10)
                 {
                     bruiseLevelText="About to get normal";
                 }
 
-                ouchMessage = "Relief: hits reduced to" + hitCounter + '.' + "\n" + bruiseLevelText;
+                ouchMessage = "Relief: hits reduced to " + hitCounter + '.' + "\n" + bruiseLevelText;
 
+                Toast.makeText(HitMeActivity.this, toastMsg, Toast.LENGTH_SHORT).show();
                 mTextView.setText(ouchMessage);
             }
         });

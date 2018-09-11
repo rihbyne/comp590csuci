@@ -23,3 +23,7 @@ captures
 # generated files
 bin/
 gen/
+
+# gradle wrapper
+gradlew
+gradles.bat
